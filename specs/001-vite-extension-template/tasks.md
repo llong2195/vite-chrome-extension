@@ -76,20 +76,20 @@
 
 ### Implementation for User Story 1
 
-- [ ] T038 [P] [US1] Create background entry point in src/background/index.ts with service worker registration
-- [ ] T039 [P] [US1] Create popup entry point in src/popup/index.tsx with React root mounting
-- [ ] T040 [P] [US1] Create popup HTML template (if needed) or configure Vite to inject script
-- [ ] T041 [US1] Create main popup App component in src/popup/App.tsx with basic layout
-- [ ] T042 [P] [US1] Import global styles in popup entry point
-- [ ] T043 [P] [US1] Create basic UI component in src/popup/components/Button.tsx
-- [ ] T044 [P] [US1] Create basic UI component in src/popup/components/Card.tsx
-- [ ] T045 [US1] Add theme toggle functionality in popup App.tsx (reads system preference)
-- [ ] T046 [US1] Configure manifest.json action field for popup (default_popup, icons)
+- [x] T038 [P] [US1] Create background entry point in src/background/index.ts with service worker registration
+- [x] T039 [P] [US1] Create popup entry point in src/popup/index.tsx with React root mounting
+- [x] T040 [P] [US1] Create popup HTML template (if needed) or configure Vite to inject script
+- [x] T041 [US1] Create main popup App component in src/popup/App.tsx with basic layout
+- [x] T042 [P] [US1] Import global styles in popup entry point
+- [x] T043 [P] [US1] Create basic UI component in src/popup/components/Button.tsx
+- [x] T044 [P] [US1] Create basic UI component in src/popup/components/Card.tsx
+- [x] T045 [US1] Add theme toggle functionality in popup App.tsx (reads system preference)
+- [x] T046 [US1] Configure manifest.json action field for popup (default_popup, icons)
 - [ ] T047 [US1] Test background service worker initializes without errors in chrome://extensions/
 - [ ] T048 [US1] Test popup opens when clicking extension icon
 - [ ] T049 [US1] Verify hot reload works by making a change to popup and seeing update <3s
-- [ ] T050 [P] [US1] Add console.log in background worker confirming initialization
-- [ ] T051 [P] [US1] Add version display in popup UI reading from manifest
+- [x] T050 [P] [US1] Add console.log in background worker confirming initialization
+- [x] T051 [P] [US1] Add version display in popup UI reading from manifest
 - [ ] T052 [US1] Update README.md with setup instructions and dev command usage
 - [ ] T053 [US1] Create quickstart section in README.md based on quickstart.md
 
