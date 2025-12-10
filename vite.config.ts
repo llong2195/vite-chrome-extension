@@ -1,7 +1,8 @@
-import { defineConfig, type PluginOption } from 'vite';
+import tailwindcss from '@tailwindcss/postcss';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { defineConfig, type PluginOption } from 'vite';
 
 export default defineConfig(({ mode }) => ({
   plugins: [
@@ -14,6 +15,12 @@ export default defineConfig(({ mode }) => ({
         brotliSize: true,
       }) as PluginOption),
   ].filter(Boolean),
+
+  css: {
+    postcss: {
+      plugins: [tailwindcss],
+    },
+  },
 
   resolve: {
     alias: {

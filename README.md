@@ -5,8 +5,8 @@ A production-ready Chrome extension template built with Vite, React, and TypeScr
 ## Features
 
 - ⚡️ **Vite 5+** - Lightning-fast dev builds with HMR (<3s rebuild time)
-- ⚛️ **React 18+** - Modern React with hooks and TypeScript
-- 🎨 **TailwindCSS** - Utility-first CSS with dark mode support
+- ⚛️ **React 19** - Latest React with hooks and TypeScript
+- 🎨 **Tailwind CSS v4** - Modern utility-first CSS with native CSS features and dark mode support
 - 📦 **Manifest V3** - Latest Chrome Extension API
 - 🔒 **TypeScript Strict Mode** - Type safety throughout
 - ✅ **Vitest** - Fast unit testing with Chrome API mocks
@@ -113,9 +113,9 @@ This template includes all major Chrome extension contexts:
 ## Tech Stack
 
 - **Build Tool**: Vite 5+
-- **Framework**: React 18+
+- **Framework**: React 19 (latest)
 - **Language**: TypeScript 5+ (strict mode)
-- **Styling**: TailwindCSS
+- **Styling**: Tailwind CSS v4 with @tailwindcss/postcss
 - **Testing**: Vitest with happy-dom
 - **Validation**: Zod for runtime type checking
 - **Linting**: ESLint with TypeScript, React, and accessibility plugins
