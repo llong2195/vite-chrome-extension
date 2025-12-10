@@ -11,7 +11,12 @@ interface ToastProps {
   duration?: number;
 }
 
-const Toast: React.FC<ToastProps> = ({ message, type, onClose, duration = 3000 }) => {
+const Toast: React.FC<ToastProps> = ({
+  message,
+  type,
+  onClose,
+  duration = 3000,
+}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
@@ -21,7 +26,8 @@ const Toast: React.FC<ToastProps> = ({ message, type, onClose, duration = 3000 }
   }, [duration, onClose]);
 
   const bgColor = {
-    success: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
+    success:
+      'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
     error: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
     info: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
   };

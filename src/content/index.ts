@@ -39,7 +39,7 @@ async function init(): Promise<void> {
  * Send page data to background worker
  */
 async function sendPageDataToBackground(
-  metadata: ReturnType<typeof getPageMetadata>
+  metadata: ReturnType<typeof getPageMetadata>,
 ): Promise<void> {
   try {
     const tab = await chrome.tabs.getCurrent();
@@ -80,7 +80,11 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   }
 
   if (message.type === 'HIGHLIGHT_LINKS') {
-    const count = highlightElements('a', message.color || '#3b82f6', message.duration || 2000);
+    const count = highlightElements(
+      'a',
+      message.color || '#3b82f6',
+      message.duration || 2000,
+    );
     sendResponse({ success: true, data: { count } });
     return true;
   }

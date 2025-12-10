@@ -70,12 +70,18 @@ export type Message = z.infer<typeof MessageSchema>;
 
 // Individual message type helpers
 export type GetSettingsMessage = Extract<Message, { type: 'GET_SETTINGS' }>;
-export type UpdateSettingsMessage = Extract<Message, { type: 'UPDATE_SETTINGS' }>;
+export type UpdateSettingsMessage = Extract<
+  Message,
+  { type: 'UPDATE_SETTINGS' }
+>;
 export type GetStateMessage = Extract<Message, { type: 'GET_STATE' }>;
 export type UpdateStateMessage = Extract<Message, { type: 'UPDATE_STATE' }>;
 export type ExecuteActionMessage = Extract<Message, { type: 'EXECUTE_ACTION' }>;
 export type NotifyMessage = Extract<Message, { type: 'NOTIFY' }>;
-export type SettingsUpdatedMessage = Extract<Message, { type: 'SETTINGS_UPDATED' }>;
+export type SettingsUpdatedMessage = Extract<
+  Message,
+  { type: 'SETTINGS_UPDATED' }
+>;
 export type TabDataMessage = Extract<Message, { type: 'TAB_DATA' }>;
 
 /**

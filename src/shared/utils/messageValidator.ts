@@ -1,4 +1,8 @@
-import { MessageSchema, type Message, type MessageResponse } from '../types/messages';
+import {
+  MessageSchema,
+  type Message,
+  type MessageResponse,
+} from '../types/messages';
 import { ZodError } from 'zod';
 
 /**
@@ -10,7 +14,7 @@ export function validateMessage(message: unknown): Message {
   } catch (error) {
     if (error instanceof ZodError) {
       throw new Error(
-        `Message validation failed: ${error.issues.map((e: { message: string }) => e.message).join(', ')}`
+        `Message validation failed: ${error.issues.map((e: { message: string }) => e.message).join(', ')}`,
       );
     }
     throw error;
@@ -72,7 +76,9 @@ export function createGetSettingsMessage() {
   };
 }
 
-export function createUpdateSettingsMessage(settings: Partial<Record<string, unknown>>) {
+export function createUpdateSettingsMessage(
+  settings: Partial<Record<string, unknown>>,
+) {
   return {
     ...createBaseMessage(),
     type: 'UPDATE_SETTINGS' as const,
@@ -87,7 +93,9 @@ export function createGetStateMessage() {
   };
 }
 
-export function createUpdateStateMessage(state: Partial<Record<string, unknown>>) {
+export function createUpdateStateMessage(
+  state: Partial<Record<string, unknown>>,
+) {
   return {
     ...createBaseMessage(),
     type: 'UPDATE_STATE' as const,
@@ -95,7 +103,10 @@ export function createUpdateStateMessage(state: Partial<Record<string, unknown>>
   };
 }
 
-export function createExecuteActionMessage(action: string, params?: Record<string, unknown>) {
+export function createExecuteActionMessage(
+  action: string,
+  params?: Record<string, unknown>,
+) {
   return {
     ...createBaseMessage(),
     type: 'EXECUTE_ACTION' as const,
@@ -118,7 +129,7 @@ export function createTabDataMessage(data: {
 
 export function createNotifyMessage(
   message: string,
-  type: 'info' | 'success' | 'error' | 'warning' = 'info'
+  type: 'info' | 'success' | 'error' | 'warning' = 'info',
 ) {
   return {
     ...createBaseMessage(),

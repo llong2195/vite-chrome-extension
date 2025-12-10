@@ -10,25 +10,32 @@ interface ThemeSelectorProps {
   disabled?: boolean;
 }
 
-const ThemeSelector: React.FC<ThemeSelectorProps> = ({ value, onChange, disabled = false }) => {
-  const themes: Array<{ value: 'light' | 'dark' | 'system'; label: string; description: string }> =
-    [
-      {
-        value: 'light',
-        label: 'Light',
-        description: 'Always use light theme',
-      },
-      {
-        value: 'dark',
-        label: 'Dark',
-        description: 'Always use dark theme',
-      },
-      {
-        value: 'system',
-        label: 'System',
-        description: 'Follow system preference',
-      },
-    ];
+const ThemeSelector: React.FC<ThemeSelectorProps> = ({
+  value,
+  onChange,
+  disabled = false,
+}) => {
+  const themes: Array<{
+    value: 'light' | 'dark' | 'system';
+    label: string;
+    description: string;
+  }> = [
+    {
+      value: 'light',
+      label: 'Light',
+      description: 'Always use light theme',
+    },
+    {
+      value: 'dark',
+      label: 'Dark',
+      description: 'Always use dark theme',
+    },
+    {
+      value: 'system',
+      label: 'System',
+      description: 'Follow system preference',
+    },
+  ];
 
   return (
     <div className="space-y-3">
@@ -46,13 +53,19 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({ value, onChange, disabled
             name="theme"
             value={theme.value}
             checked={value === theme.value}
-            onChange={(e) => onChange(e.target.value as 'light' | 'dark' | 'system')}
+            onChange={(e) =>
+              onChange(e.target.value as 'light' | 'dark' | 'system')
+            }
             disabled={disabled}
             className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500"
           />
           <div className="ml-3 flex-1">
-            <div className="font-medium text-gray-900 dark:text-white">{theme.label}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">{theme.description}</div>
+            <div className="font-medium text-gray-900 dark:text-white">
+              {theme.label}
+            </div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              {theme.description}
+            </div>
           </div>
         </label>
       ))}

@@ -52,7 +52,11 @@ function App(): React.ReactElement {
     if (!settings) return;
 
     const newTheme =
-      settings.theme === 'light' ? 'dark' : settings.theme === 'dark' ? 'system' : 'light';
+      settings.theme === 'light'
+        ? 'dark'
+        : settings.theme === 'dark'
+          ? 'system'
+          : 'light';
 
     try {
       const message = createUpdateSettingsMessage({ theme: newTheme });
@@ -141,7 +145,11 @@ function App(): React.ReactElement {
           </div>
 
           <div className="pt-2">
-            <Button onClick={() => chrome.runtime.openOptionsPage()} variant="secondary" fullWidth>
+            <Button
+              onClick={() => chrome.runtime.openOptionsPage()}
+              variant="secondary"
+              fullWidth
+            >
               Open Options
             </Button>
           </div>

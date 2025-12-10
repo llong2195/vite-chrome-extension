@@ -6,7 +6,11 @@ export interface CardProps {
   padding?: 'none' | 'sm' | 'md' | 'lg';
 }
 
-const Card: React.FC<CardProps> = ({ children, className = '', padding = 'md' }) => {
+const Card: React.FC<CardProps> = ({
+  children,
+  className = '',
+  padding = 'md',
+}) => {
   const paddingClasses = {
     none: '',
     sm: 'p-2',

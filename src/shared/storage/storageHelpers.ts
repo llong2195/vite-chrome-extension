@@ -20,7 +20,9 @@ export async function saveSettings(settings: Settings): Promise<void> {
 /**
  * Update settings partially
  */
-export async function updateSettings(partial: Partial<Settings>): Promise<Settings> {
+export async function updateSettings(
+  partial: Partial<Settings>,
+): Promise<Settings> {
   const current = await getSettings();
   const updated = { ...current, ...partial } as Settings;
   await saveSettings(updated as Settings);

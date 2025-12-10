@@ -12,6 +12,6 @@ if (root) {
       <ErrorBoundary>
         <OptionsApp />
       </ErrorBoundary>
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 }

@@ -37,10 +37,20 @@ const Button: React.FC<ButtonProps> = ({
 
   const widthClass = fullWidth ? 'w-full' : '';
 
-  const classes = [baseClasses, variantClasses[variant], sizeClasses[size], widthClass].join(' ');
+  const classes = [
+    baseClasses,
+    variantClasses[variant],
+    sizeClasses[size],
+    widthClass,
+  ].join(' ');
 
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={classes}
+    >
       {children}
     </button>
   );

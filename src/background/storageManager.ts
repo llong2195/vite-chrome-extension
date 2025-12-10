@@ -4,7 +4,11 @@
  */
 
 import { STORAGE_KEYS } from '@shared/constants';
-import { DEFAULT_SETTINGS, type Settings, SettingsSchema } from '@shared/types/settings';
+import {
+  DEFAULT_SETTINGS,
+  type Settings,
+  SettingsSchema,
+} from '@shared/types/settings';
 import { DEFAULT_STATE, type State, StateSchema } from '@shared/types/state';
 
 /**
@@ -68,7 +72,9 @@ export async function setSettings(settings: Settings): Promise<void> {
 /**
  * Update settings partially
  */
-export async function updateSettings(partial: Partial<Settings>): Promise<Settings> {
+export async function updateSettings(
+  partial: Partial<Settings>,
+): Promise<Settings> {
   const current = (await getSettings()) || DEFAULT_SETTINGS;
   const updated = { ...current, ...partial };
   await setSettings(updated);
@@ -149,7 +155,9 @@ async function performMigrations(): Promise<void> {
   const currentVersion = await getStorageVersion();
 
   if (currentVersion < CURRENT_STORAGE_VERSION) {
-    console.log(`Migrating storage from v${currentVersion} to v${CURRENT_STORAGE_VERSION}`);
+    console.log(
+      `Migrating storage from v${currentVersion} to v${CURRENT_STORAGE_VERSION}`,
+    );
 
     // Perform migrations based on version
     if (currentVersion < 1) {
@@ -206,7 +214,10 @@ export async function exportAllData(): Promise<{
 /**
  * Import data from backup (with validation)
  */
-export async function importData(data: { settings?: Settings; state?: State }): Promise<void> {
+export async function importData(data: {
+  settings?: Settings;
+  state?: State;
+}): Promise<void> {
   if (data.settings) {
     await setSettings(data.settings);
   }

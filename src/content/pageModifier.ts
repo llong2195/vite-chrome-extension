@@ -6,7 +6,10 @@
 /**
  * Add a visual indicator to the page
  */
-export function addPageIndicator(message: string, duration: number = 2000): void {
+export function addPageIndicator(
+  message: string,
+  duration: number = 2000,
+): void {
   const indicator = document.createElement('div');
   indicator.textContent = message;
   indicator.style.cssText = `
@@ -63,9 +66,11 @@ export function getPageMetadata(): {
   headings: string[];
 } {
   const metaDescription =
-    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.content || '';
+    document.querySelector<HTMLMetaElement>('meta[name="description"]')
+      ?.content || '';
   const metaKeywords =
-    document.querySelector<HTMLMetaElement>('meta[name="keywords"]')?.content || '';
+    document.querySelector<HTMLMetaElement>('meta[name="keywords"]')?.content ||
+    '';
 
   const headings = Array.from(document.querySelectorAll('h1, h2, h3'))
     .map((h) => h.textContent?.trim())
@@ -89,7 +94,7 @@ export function getPageMetadata(): {
 export function highlightElements(
   selector: string,
   color: string = '#3b82f6',
-  duration: number = 2000
+  duration: number = 2000,
 ): number {
   const elements = document.querySelectorAll(selector);
   const originalStyles = new Map<Element, string>();

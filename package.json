@@ -13,7 +13,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "build:analyze": "vite build --mode analyze",
-    "package": "npm run build:prod && node scripts/package-extension.js"
+    "package": "npm run build:prod && node scripts/package-extension.js",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,15 @@
     "url": "https://github.com/llong2195/vite-chrome-extension/issues"
   },
   "homepage": "https://github.com/llong2195/vite-chrome-extension#readme",
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
     "autoprefixer": "^10.4.22",
@@ -58,6 +68,8 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "happy-dom": "^20.0.11",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "rollup-plugin-visualizer": "^6.0.5",
     "typescript": "~5.9.3",

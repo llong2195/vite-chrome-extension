@@ -10,18 +10,24 @@ import ToggleSwitch from './components/ToggleSwitch';
 import Toast from './components/Toast';
 
 const OptionsApp: React.FC = () => {
-  const { settings, loading, error, updateSettings, resetSettings } = useSettings();
+  const { settings, loading, error, updateSettings, resetSettings } =
+    useSettings();
   const [toast, setToast] = useState<{
     message: string;
     type: 'success' | 'error' | 'info';
   } | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
-  const showToast = (message: string, type: 'success' | 'error' | 'info'): void => {
+  const showToast = (
+    message: string,
+    type: 'success' | 'error' | 'info',
+  ): void => {
     setToast({ message, type });
   };
 
-  const handleThemeChange = async (theme: 'light' | 'dark' | 'system'): Promise<void> => {
+  const handleThemeChange = async (
+    theme: 'light' | 'dark' | 'system',
+  ): Promise<void> => {
     setIsSaving(true);
     const success = await updateSettings({ theme });
     setIsSaving(false);
@@ -33,13 +39,18 @@ const OptionsApp: React.FC = () => {
     }
   };
 
-  const handleNotificationsChange = async (notifications: boolean): Promise<void> => {
+  const handleNotificationsChange = async (
+    notifications: boolean,
+  ): Promise<void> => {
     setIsSaving(true);
     const success = await updateSettings({ notifications });
     setIsSaving(false);
 
     if (success) {
-      showToast(`Notifications ${notifications ? 'enabled' : 'disabled'}`, 'success');
+      showToast(
+        `Notifications ${notifications ? 'enabled' : 'disabled'}`,
+        'success',
+      );
     } else {
       showToast('Failed to update notifications', 'error');
     }
@@ -80,7 +91,9 @@ const OptionsApp: React.FC = () => {
           <div className="text-lg font-medium text-gray-700 dark:text-gray-200 mb-2">
             Loading settings...
           </div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">Please wait</div>
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            Please wait
+          </div>
         </div>
       </div>
     );
@@ -122,7 +135,9 @@ const OptionsApp: React.FC = () => {
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden">
           {/* Theme Section */}
           <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Appearance</h2>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              Appearance
+            </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               Choose how the extension looks
             </p>
@@ -165,7 +180,9 @@ const OptionsApp: React.FC = () => {
           <div className="p-6 bg-gray-50 dark:bg-gray-900/50">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-white">Reset Settings</h3>
+                <h3 className="font-medium text-gray-900 dark:text-white">
+                  Reset Settings
+                </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Restore all settings to default values
                 </p>
@@ -190,7 +207,13 @@ const OptionsApp: React.FC = () => {
       </div>
 
       {/* Toast Notifications */}
-      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
     </div>
   );
 };

@@ -8,7 +8,12 @@ import {
   createSuccessResponse,
   createErrorResponse,
 } from '@shared/utils/messageValidator';
-import { getSettings, saveSettings, getState, saveState } from '@shared/storage/storageHelpers';
+import {
+  getSettings,
+  saveSettings,
+  getState,
+  saveState,
+} from '@shared/storage/storageHelpers';
 import { DEFAULT_SETTINGS } from '@shared/types/settings';
 import { DEFAULT_STATE } from '@shared/types/state';
 import type { Message, MessageResponse } from '@shared/types/messages';
@@ -16,7 +21,9 @@ import type { Message, MessageResponse } from '@shared/types/messages';
 /**
  * Main message handler - routes messages to appropriate handlers
  */
-export async function handleMessage(message: unknown): Promise<MessageResponse> {
+export async function handleMessage(
+  message: unknown,
+): Promise<MessageResponse> {
   try {
     // Validate message structure
     const validatedMessage = validateMessage(message);
@@ -45,11 +52,15 @@ export async function handleMessage(message: unknown): Promise<MessageResponse> 
         return await handleNotify(validatedMessage);
 
       default:
-        return createErrorResponse(`Unknown message type: ${(validatedMessage as Message).type}`);
+        return createErrorResponse(
+          `Unknown message type: ${(validatedMessage as Message).type}`,
+        );
     }
   } catch (error) {
     console.error('Message handling error:', error);
-    return createErrorResponse(error instanceof Error ? error.message : 'Unknown error occurred');
+    return createErrorResponse(
+      error instanceof Error ? error.message : 'Unknown error occurred',
+    );
   }
 }
 
@@ -64,7 +75,9 @@ async function handleGetSettings(): Promise<MessageResponse> {
 /**
  * Handle UPDATE_SETTINGS message
  */
-async function handleUpdateSettings(message: Message): Promise<MessageResponse> {
+async function handleUpdateSettings(
+  message: Message,
+): Promise<MessageResponse> {
   if (message.type !== 'UPDATE_SETTINGS') {
     return createErrorResponse('Invalid message type');
   }
@@ -182,7 +195,9 @@ async function broadcastSettingsUpdate(settings: unknown): Promise<void> {
 /**
  * Action handlers
  */
-async function performSyncData(params?: Record<string, unknown>): Promise<MessageResponse> {
+async function performSyncData(
+  params?: Record<string, unknown>,
+): Promise<MessageResponse> {
   // Implement sync logic
   console.log('Syncing data with params:', params);
   const state = await getState();
@@ -197,7 +212,10 @@ async function performSyncData(params?: Record<string, unknown>): Promise<Messag
   };
   await saveState(updatedState);
 
-  return createSuccessResponse({ synced: true, timestamp: updatedState.lastSync });
+  return createSuccessResponse({
+    synced: true,
+    timestamp: updatedState.lastSync,
+  });
 }
 
 async function performClearCache(): Promise<MessageResponse> {
