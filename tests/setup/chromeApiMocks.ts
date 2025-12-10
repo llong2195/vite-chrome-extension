@@ -147,6 +147,14 @@ export const mockChromeTabs = {
       frozen: false,
     };
   },
+  sendMessage: async <T = unknown>(tabId: number, message: unknown): Promise<T> => {
+    // Simulate sending message to tab
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ success: true } as T);
+      }, 0);
+    });
+  },
 };
 
 // Setup global chrome object for tests

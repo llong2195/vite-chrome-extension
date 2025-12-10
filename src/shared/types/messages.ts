@@ -37,7 +37,7 @@ export const MessageSchema = z.discriminatedUnion('type', [
     type: z.literal('EXECUTE_ACTION'),
     payload: z.object({
       action: z.string(),
-      params: z.record(z.unknown()).optional(),
+      params: z.record(z.string(), z.unknown()).optional(),
     }),
   }),
   // Notification message
@@ -61,7 +61,7 @@ export const MessageSchema = z.discriminatedUnion('type', [
       url: z.string().url(),
       title: z.string(),
       isProcessed: z.boolean(),
-      metadata: z.record(z.unknown()).optional(),
+      metadata: z.record(z.string(), z.unknown()).optional(),
     }),
   }),
 ]);

@@ -28,7 +28,7 @@
     }
   ],
   "options_page": "src/options/index.html",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab", "scripting", "alarms"],
   "host_permissions": ["<all_urls>"],
   "web_accessible_resources": [
     {

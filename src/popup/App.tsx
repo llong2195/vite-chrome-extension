@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import Button from './components/Button';
 import Card from './components/Card';
+import type { Settings } from '@shared/types/settings';
+import {
+  createGetSettingsMessage,
+  createUpdateSettingsMessage,
+} from '@shared/utils/messageValidator';
 
 interface ManifestType {
   name: string;
@@ -9,7 +14,8 @@ interface ManifestType {
 }
 
 function App(): React.ReactElement {
-  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
+  const [settings, setSettings] = useState<Settings | null>(null);
+  const [loading, setLoading] = useState(true);
   const [manifest, setManifest] = useState<ManifestType | null>(null);
 
   useEffect(() => {
@@ -21,27 +27,58 @@ function App(): React.ReactElement {
       description: manifestData.description || '',
     });
 
-    // Detect system theme preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    setTheme(prefersDark.matches ? 'dark' : 'light');
+    // Load settings from background
+    async function loadSettings(): Promise<void> {
+      try {
+        const message = createGetSettingsMessage();
+        const response = await chrome.runtime.sendMessage(message);
 
-    // Listen for theme changes
-    const handleThemeChange = (e: MediaQueryListEvent): void => {
-      setTheme(e.matches ? 'dark' : 'light');
-    };
+        if (response.success) {
+          setSettings(response.data as Settings);
+        } else {
+          console.error('Failed to load settings:', response.error);
+        }
+      } catch (error) {
+        console.error('Error loading settings:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-    prefersDark.addEventListener('change', handleThemeChange);
-
-    return () => {
-      prefersDark.removeEventListener('change', handleThemeChange);
-    };
+    loadSettings();
   }, []);
 
-  const handleThemeToggle = (): void => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    // In a full implementation, this would update settings
+  const handleThemeToggle = async (): Promise<void> => {
+    if (!settings) return;
+
+    const newTheme =
+      settings.theme === 'light' ? 'dark' : settings.theme === 'dark' ? 'system' : 'light';
+
+    try {
+      const message = createUpdateSettingsMessage({ theme: newTheme });
+      const response = await chrome.runtime.sendMessage(message);
+
+      if (response.success) {
+        setSettings(response.data as Settings);
+      } else {
+        console.error('Failed to update theme:', response.error);
+      }
+    } catch (error) {
+      console.error('Error updating theme:', error);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="w-96 min-h-[400px] p-4 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-lg font-medium text-gray-700 dark:text-gray-200">
+            Loading settings...
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-96 min-h-[400px] p-4">
@@ -61,13 +98,33 @@ function App(): React.ReactElement {
               {manifest?.description || 'Loading...'}
             </p>
 
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
-                Current Theme: {theme}
-              </span>
-              <Button onClick={handleThemeToggle} variant="primary" size="sm">
-                Toggle Theme
-              </Button>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                  Theme: {settings?.theme || 'system'}
+                </span>
+                <Button onClick={handleThemeToggle} variant="primary" size="sm">
+                  Toggle Theme
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                  Notifications
+                </span>
+                <span className="text-sm text-gray-600 dark:text-gray-300">
+                  {settings?.notifications ? 'Enabled' : 'Disabled'}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                  Auto Sync
+                </span>
+                <span className="text-sm text-gray-600 dark:text-gray-300">
+                  {settings?.autoSync ? 'Enabled' : 'Disabled'}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -77,9 +134,9 @@ function App(): React.ReactElement {
             </h2>
             <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
               <li>✅ Extension loaded successfully</li>
-              <li>✅ React 18 + TypeScript</li>
-              <li>✅ TailwindCSS styling</li>
-              <li>✅ Hot module replacement ready</li>
+              <li>✅ React 19 + TypeScript</li>
+              <li>✅ TailwindCSS v4 styling</li>
+              <li>✅ Settings loaded from storage</li>
             </ul>
           </div>
 

@@ -3,9 +3,8 @@
  * Handles extension initialization, message passing, and state management
  */
 
-import { DEFAULT_SETTINGS } from '@shared/types/settings';
-import { DEFAULT_STATE } from '@shared/types/state';
-import { getSettings, saveSettings, getState, saveState } from '@shared/storage/storageHelpers';
+import { handleMessage } from './messageHandler';
+import { initializeStorage } from './storageManager';
 
 console.log('Background service worker initialized');
 
@@ -15,19 +14,18 @@ console.log('Background service worker initialized');
 chrome.runtime.onInstalled.addListener(async (details) => {
   console.log('Extension installed:', details.reason);
 
-  // Initialize settings if not exists
-  const existingSettings = await getSettings();
-  if (!existingSettings) {
-    await saveSettings(DEFAULT_SETTINGS);
-    console.log('Default settings initialized');
-  }
+  // Initialize storage with default values
+  await initializeStorage();
 
-  // Initialize state if not exists
-  const existingState = await getState();
-  if (!existingState) {
-    await saveState(DEFAULT_STATE);
-    console.log('Default state initialized');
-  }
+  console.log('Extension initialization complete');
+});
+
+/**
+ * Initialize on startup
+ */
+chrome.runtime.onStartup.addListener(async () => {
+  console.log('Extension startup');
+  await initializeStorage();
 });
 
 /**
@@ -49,13 +47,70 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 });
 
 /**
- * Process incoming messages
+ * Listen for storage changes and sync across contexts
  */
-async function handleMessage(
-  _message: unknown
-): Promise<{ success: boolean; data?: unknown; error?: string }> {
-  // Basic message handling - will be expanded in Phase 5
-  return { success: true, data: { received: true } };
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  console.log('Storage changed:', { areaName, changes });
+
+  // You can broadcast changes to tabs here if needed
+  if (changes.extension_settings) {
+    console.log('Settings updated:', changes.extension_settings.newValue);
+  }
+});
+
+/**
+ * Handle tab updates to inject content scripts or track active tabs
+ */
+chrome.tabs.onActivated.addListener(async (activeInfo) => {
+  console.log('Tab activated:', activeInfo.tabId);
+
+  // Update state with active tab ID
+  // This will be used in Phase 5 implementation
+});
+
+/**
+ * Example: Periodic task using chrome.alarms API
+ * This demonstrates how to run background tasks on a schedule
+ */
+
+// Create an alarm on installation
+chrome.runtime.onInstalled.addListener(() => {
+  // Create a periodic alarm that fires every 60 minutes
+  chrome.alarms.create('periodicSync', {
+    periodInMinutes: 60,
+  });
+  console.log('Periodic sync alarm created');
+});
+
+// Listen for alarm events
+chrome.alarms.onAlarm.addListener((alarm) => {
+  console.log('Alarm triggered:', alarm.name);
+
+  if (alarm.name === 'periodicSync') {
+    // Perform periodic sync task
+    performPeriodicSync();
+  }
+});
+
+/**
+ * Example periodic sync function
+ * Replace with your actual sync logic
+ */
+async function performPeriodicSync(): Promise<void> {
+  console.log('Performing periodic sync...');
+
+  try {
+    // Example: Sync data, check for updates, etc.
+    // This could fetch data from an API, update local storage, etc.
+
+    const timestamp = new Date().toISOString();
+    console.log(`Sync completed at ${timestamp}`);
+
+    // You could update state here
+    // await updateState({ lastSync: timestamp });
+  } catch (error) {
+    console.error('Periodic sync failed:', error);
+  }
 }
 
 // Export for testing
