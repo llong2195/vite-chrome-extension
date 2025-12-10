@@ -17,27 +17,27 @@
 
 **Purpose**: Project initialization and basic structure that ALL user stories depend on
 
-- [ ] T001 Initialize Node.js project with package.json (name, version, type: module)
-- [ ] T002 [P] Create root directory structure (src/, public/, tests/, dist/)
-- [ ] T003 [P] Create shared types directory in src/shared/types/
-- [ ] T004 Install core dependencies: typescript@5+, vite@5+, @types/node, @types/chrome
-- [ ] T005 [P] Create tsconfig.json with strict mode enabled and path aliases
-- [ ] T006 [P] Create .gitignore (node_modules/, dist/, .DS_Store, \*.log)
-- [ ] T007 [P] Create README.md with project overview and placeholder sections
-- [ ] T008 Install React dependencies: react@18+, react-dom@18+, @types/react, @types/react-dom
-- [ ] T009 [P] Install TailwindCSS: tailwindcss, postcss, autoprefixer
-- [ ] T010 [P] Create tailwind.config.js with content paths for all contexts
-- [ ] T011 [P] Create postcss.config.js with tailwindcss and autoprefixer plugins
-- [ ] T012 Install Zod for runtime validation: zod@3+
-- [ ] T013 [P] Install ESLint: eslint, @typescript-eslint/parser, @typescript-eslint/eslint-plugin
-- [ ] T014 [P] Install ESLint React plugins: eslint-plugin-react, eslint-plugin-react-hooks, eslint-plugin-jsx-a11y
-- [ ] T015 [P] Create .eslintrc.json with TypeScript and React rules
-- [ ] T016 [P] Install Prettier: prettier, eslint-config-prettier
-- [ ] T017 [P] Create .prettierrc with formatting rules
-- [ ] T018 Install Vitest: vitest, @vitest/ui, happy-dom (for DOM testing)
-- [ ] T019 [P] Create vitest.config.ts with test environment configuration
-- [ ] T020 [P] Create VS Code settings in .vscode/settings.json (formatOnSave, linting)
-- [ ] T021 [P] Create VS Code extensions.json recommending TypeScript, ESLint, Prettier, Tailwind CSS IntelliSense
+- [x] T001 Initialize Node.js project with package.json (name, version, type: module)
+- [x] T002 [P] Create root directory structure (src/, public/, tests/, dist/)
+- [x] T003 [P] Create shared types directory in src/shared/types/
+- [x] T004 Install core dependencies: typescript@5+, vite@5+, @types/node, @types/chrome
+- [x] T005 [P] Create tsconfig.json with strict mode enabled and path aliases
+- [x] T006 [P] Create .gitignore (node_modules/, dist/, .DS_Store, \*.log)
+- [x] T007 [P] Create README.md with project overview and placeholder sections
+- [x] T008 Install React dependencies: react@18+, react-dom@18+, @types/react, @types/react-dom
+- [x] T009 [P] Install TailwindCSS: tailwindcss, postcss, autoprefixer
+- [x] T010 [P] Create tailwind.config.js with content paths for all contexts
+- [x] T011 [P] Create postcss.config.js with tailwindcss and autoprefixer plugins
+- [x] T012 Install Zod for runtime validation: zod@3+
+- [x] T013 [P] Install ESLint: eslint, @typescript-eslint/parser, @typescript-eslint/eslint-plugin
+- [x] T014 [P] Install ESLint React plugins: eslint-plugin-react, eslint-plugin-react-hooks, eslint-plugin-jsx-a11y
+- [x] T015 [P] Create .eslintrc.json with TypeScript and React rules
+- [x] T016 [P] Install Prettier: prettier, eslint-config-prettier
+- [x] T017 [P] Create .prettierrc with formatting rules
+- [x] T018 Install Vitest: vitest, @vitest/ui, happy-dom (for DOM testing)
+- [x] T019 [P] Create vitest.config.ts with test environment configuration
+- [x] T020 [P] Create VS Code settings in .vscode/settings.json (formatOnSave, linting)
+- [x] T021 [P] Create VS Code extensions.json recommending TypeScript, ESLint, Prettier, Tailwind CSS IntelliSense
 
 ---
 
@@ -47,21 +47,21 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T022 Create public/manifest.json with Manifest V3 schema, basic metadata, and permissions
-- [ ] T023 [P] Create extension icons (16x16, 48x48, 128x128) in src/assets/icons/
-- [ ] T024 [P] Define base Message type in src/shared/types/messages.ts
-- [ ] T025 [P] Define Settings schema with Zod in src/shared/types/settings.ts
-- [ ] T026 [P] Define State schema with Zod in src/shared/types/state.ts
-- [ ] T027 Create shared constants in src/shared/constants.ts (storage keys, timeouts, defaults)
-- [ ] T028 [P] Create storage helper functions in src/shared/storage/storageHelpers.ts
-- [ ] T029 [P] Create message validation utilities in src/shared/utils/messageValidator.ts
-- [ ] T030 Configure Vite with multi-entry build in vite.config.ts (background, content, popup, options entries)
+- [x] T022 Create public/manifest.json with Manifest V3 schema, basic metadata, and permissions
+- [x] T023 [P] Create extension icons (16x16, 48x48, 128x128) in src/assets/icons/
+- [x] T024 [P] Define base Message type in src/shared/types/messages.ts
+- [x] T025 [P] Define Settings schema with Zod in src/shared/types/settings.ts
+- [x] T026 [P] Define State schema with Zod in src/shared/types/state.ts
+- [x] T027 Create shared constants in src/shared/constants.ts (storage keys, timeouts, defaults)
+- [x] T028 [P] Create storage helper functions in src/shared/storage/storageHelpers.ts
+- [x] T029 [P] Create message validation utilities in src/shared/utils/messageValidator.ts
+- [x] T030 Configure Vite with multi-entry build in vite.config.ts (background, content, popup, options entries)
 - [ ] T031 Add Vite plugin for Chrome extension (CRXJS or manual manifest handling)
-- [ ] T032 Configure build output structure in vite.config.ts (separate bundles per context)
-- [ ] T033 [P] Add rollup-plugin-visualizer for bundle size analysis
-- [ ] T034 Create global styles in src/assets/styles/global.css with Tailwind directives
-- [ ] T035 [P] Create test setup in tests/setup/chromeApiMocks.ts with Chrome API mocks
-- [ ] T036 Add npm scripts in package.json: dev, build, test, lint, format, type-check
+- [x] T032 Configure build output structure in vite.config.ts (separate bundles per context)
+- [x] T033 [P] Add rollup-plugin-visualizer for bundle size analysis
+- [x] T034 Create global styles in src/assets/styles/global.css with Tailwind directives
+- [x] T035 [P] Create test setup in tests/setup/chromeApiMocks.ts with Chrome API mocks
+- [x] T036 Add npm scripts in package.json: dev, build, test, lint, format, type-check
 - [ ] T037 [P] Create .env.example for environment variables (if needed)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
