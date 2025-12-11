@@ -34,6 +34,6 @@
     /* Chrome extension types */
     "types": ["chrome", "vite/client", "node"]
   },
-  "include": ["src"],
+  "include": ["src", "tests"],
   "exclude": ["node_modules", "dist"]
 }

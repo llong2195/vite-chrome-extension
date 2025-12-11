@@ -5,11 +5,18 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'happy-dom',
+    root: '.',
     setupFiles: ['./tests/setup/chromeApiMocks.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      exclude: ['node_modules/', 'tests/', 'dist/', '**/*.config.{js,ts}', '**/*.d.ts'],
+      exclude: [
+        'node_modules/',
+        'tests/',
+        'dist/',
+        '**/*.config.{js,ts}',
+        '**/*.d.ts',
+      ],
     },
   },
   resolve: {

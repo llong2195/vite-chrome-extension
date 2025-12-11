@@ -1,6 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { handleMessage } from '@background/messageHandler';
-import { setSettings, setState, clearAllStorage } from '@background/storageManager';
+import {
+  setSettings,
+  setState,
+  clearAllStorage,
+} from '@background/storageManager';
 import { createBaseMessage } from '@shared/utils/messageValidator';
 import { DEFAULT_SETTINGS } from '@shared/types/settings';
 import { DEFAULT_STATE } from '@shared/types/state';

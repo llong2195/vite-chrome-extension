@@ -1,5 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { validateMessage, createBaseMessage } from '@shared/utils/messageValidator';
+import {
+  validateMessage,
+  createBaseMessage,
+} from '@shared/utils/messageValidator';
 import type { TabDataMessage, MessageResponse } from '@shared/types/messages';
 
 describe('Content-Background Messaging', () => {
@@ -85,7 +88,8 @@ describe('Content-Background Messaging', () => {
         },
       };
 
-      const response = await chrome.runtime.sendMessage<MessageResponse>(message);
+      const response =
+        await chrome.runtime.sendMessage<MessageResponse>(message);
 
       expect(response).toHaveProperty('success');
       expect(response.success).toBe(true);
@@ -99,7 +103,8 @@ describe('Content-Background Messaging', () => {
         type: 'PING',
       };
 
-      const response = await chrome.runtime.sendMessage<MessageResponse>(message);
+      const response =
+        await chrome.runtime.sendMessage<MessageResponse>(message);
 
       expect(response).toHaveProperty('success');
       expect(typeof response.success).toBe('boolean');
@@ -111,7 +116,8 @@ describe('Content-Background Messaging', () => {
         type: 'PING',
       };
 
-      const response = await chrome.runtime.sendMessage<MessageResponse>(message);
+      const response =
+        await chrome.runtime.sendMessage<MessageResponse>(message);
 
       if (response.success) {
         expect(response).toHaveProperty('data');
