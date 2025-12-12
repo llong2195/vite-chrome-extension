@@ -44,17 +44,17 @@
     ]
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.17",
+    "@tailwindcss/vite": "^4.1.18",
     "autoprefixer": "^10.4.22",
     "postcss": "^8.5.6",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "tailwindcss": "^4.1.17",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tailwindcss": "^4.1.18",
     "zod": "^4.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/chrome": "^0.1.32",
     "@types/node": "^24.10.3",
     "@types/react": "^19.2.7",
