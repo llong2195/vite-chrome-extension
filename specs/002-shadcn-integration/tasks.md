@@ -65,10 +65,10 @@ This project uses Chrome extension structure with `src/` at repository root cont
 - [x] T018 [US1] Update src/options/OptionsApp.tsx to import and use new switch, select, and toast components
 - [x] T019 [US1] Add Toaster provider to src/options/OptionsApp.tsx for toast notifications
 - [x] T020 [US1] Update useSettings hook in src/options/hooks/useSettings.ts to use shadcn toast instead of custom Toast
-- [ ] T021 [US1] Verify all interactive elements have proper ARIA attributes and keyboard navigation support
-- [ ] T022 [US1] Test all components in popup: click buttons, verify cards display correctly
-- [ ] T023 [US1] Test all components in options page: toggle switches, change theme selector, trigger toast notifications
-- [ ] T024 [US1] Run existing test suite with `pnpm test` and ensure all tests pass
+- [x] T021 [US1] Verify all interactive elements have proper ARIA attributes and keyboard navigation support
+- [x] T022 [US1] Test all components in popup: click buttons, verify cards display correctly
+- [x] T023 [US1] Test all components in options page: toggle switches, change theme selector, trigger toast notifications
+- [x] T024 [US1] Run existing test suite with `pnpm test` and ensure all tests pass
 - [x] T025 [US1] Check bundle size with `pnpm run build` and verify total size is under 500KB (Result: ~452KB uncompressed, ~137KB gzipped ✓)
 
 **Checkpoint**: At this point, all UI components are migrated and all existing functionality works identically
