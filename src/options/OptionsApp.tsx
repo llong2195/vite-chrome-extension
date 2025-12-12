@@ -3,16 +3,35 @@
  * Allows users to configure extension settings
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSettings } from './hooks/useSettings';
 import ThemeSelector from './components/ThemeSelector';
 import ToggleSwitch from './components/ToggleSwitch';
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
+import { applyTheme, watchSystemTheme } from '@shared/utils/themeManager';
 
 const OptionsApp: React.FC = () => {
   const { settings, loading, error, updateSettings, resetSettings } =
     useSettings();
+
+  // Apply theme when settings change
+  useEffect(() => {
+    if (settings) {
+      applyTheme(settings.theme);
+    }
+  }, [settings, settings?.theme]);
+
+  // Watch for system theme changes
+  useEffect(() => {
+    const cleanup = watchSystemTheme(() => {
+      if (settings?.theme === 'system') {
+        applyTheme('system');
+      }
+    });
+
+    return cleanup;
+  }, [settings?.theme]);
 
   const handleThemeChange = async (
     theme: 'light' | 'dark' | 'system',
@@ -21,6 +40,7 @@ const OptionsApp: React.FC = () => {
 
     if (success) {
       toast.success('Theme updated successfully');
+      // Theme will be applied by useEffect
     } else {
       toast.error('Failed to update theme');
     }

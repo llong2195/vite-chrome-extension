@@ -6,6 +6,7 @@ import {
   createGetSettingsMessage,
   createUpdateSettingsMessage,
 } from '@shared/utils/messageValidator';
+import { applyTheme, watchSystemTheme } from '@shared/utils/themeManager';
 
 interface ManifestType {
   name: string;
@@ -34,7 +35,10 @@ function App(): React.ReactElement {
         const response = await chrome.runtime.sendMessage(message);
 
         if (response.success) {
-          setSettings(response.data as Settings);
+          const loadedSettings = response.data as Settings;
+          setSettings(loadedSettings);
+          // Apply theme immediately
+          applyTheme(loadedSettings.theme);
         } else {
           console.error('Failed to load settings:', response.error);
         }
@@ -46,7 +50,16 @@ function App(): React.ReactElement {
     }
 
     loadSettings();
-  }, []);
+
+    // Watch for system theme changes if using system theme
+    const cleanup = watchSystemTheme((_isDark) => {
+      if (settings?.theme === 'system') {
+        applyTheme('system');
+      }
+    });
+
+    return cleanup;
+  }, [settings?.theme]);
 
   const handleThemeToggle = async (): Promise<void> => {
     if (!settings) return;
@@ -63,7 +76,10 @@ function App(): React.ReactElement {
       const response = await chrome.runtime.sendMessage(message);
 
       if (response.success) {
-        setSettings(response.data as Settings);
+        const updatedSettings = response.data as Settings;
+        setSettings(updatedSettings);
+        // Apply theme immediately
+        applyTheme(updatedSettings.theme);
       } else {
         console.error('Failed to update theme:', response.error);
       }

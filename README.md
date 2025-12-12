@@ -7,6 +7,7 @@ A production-ready Chrome extension template built with Vite, React, and TypeScr
 - ⚡️ **Vite 5+** - Lightning-fast dev builds with HMR (<3s rebuild time)
 - ⚛️ **React 19** - Latest React with hooks and TypeScript
 - 🎨 **Tailwind CSS v4** - Modern utility-first CSS with native CSS features and dark mode support
+- 🧩 **shadcn/ui** - Accessible React components built on Radix UI primitives
 - 📦 **Manifest V3** - Latest Chrome Extension API
 - 🔒 **TypeScript Strict Mode** - Type safety throughout
 - ✅ **Vitest** - Fast unit testing with Chrome API mocks
@@ -185,10 +186,67 @@ This template includes all major Chrome extension contexts:
 - **Framework**: React 19 (latest)
 - **Language**: TypeScript 5+ (strict mode)
 - **Styling**: Tailwind CSS v4 with @tailwindcss/postcss
+- **UI Components**: shadcn/ui (Radix UI primitives with Tailwind)
 - **Testing**: Vitest with happy-dom
 - **Validation**: Zod for runtime type checking
 - **Linting**: ESLint with TypeScript, React, and accessibility plugins
 - **Formatting**: Prettier
+
+## UI Components (shadcn/ui)
+
+This template uses [shadcn/ui](https://ui.shadcn.com/) for accessible, customizable React components built on Radix UI primitives.
+
+### Available Components
+
+Pre-installed components in `src/components/ui/`:
+
+- **Button** - Buttons with variants (default, secondary, outline, ghost)
+- **Card** - Container component for grouping content
+- **Switch** - Toggle switch for boolean settings
+- **Select** - Dropdown select with keyboard navigation
+- **Sonner** - Toast notifications (using sonner library)
+
+### Adding New Components
+
+```bash
+# Add individual components
+npx shadcn@latest add dialog
+npx shadcn@latest add dropdown-menu
+npx shadcn@latest add form
+
+# List all available components
+npx shadcn@latest add
+```
+
+### Component Usage
+
+```tsx
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
+
+function MyComponent() {
+  return (
+    <Card>
+      <Button variant="default">Click me</Button>
+      <Switch
+        checked={true}
+        onCheckedChange={(checked) => console.log(checked)}
+      />
+    </Card>
+  );
+}
+```
+
+### Theme System
+
+The template includes automatic dark mode support:
+
+- **Light mode**: Default theme with high contrast
+- **Dark mode**: Activated via `.dark` class on root element
+- **System mode**: Follows OS preference using `prefers-color-scheme`
+
+Theme is managed in `src/shared/utils/themeManager.ts` and automatically syncs across popup, options, and content scripts.
 
 ## Architecture & Message Passing
 
