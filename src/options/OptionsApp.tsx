@@ -3,68 +3,48 @@
  * Allows users to configure extension settings
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useSettings } from './hooks/useSettings';
 import ThemeSelector from './components/ThemeSelector';
 import ToggleSwitch from './components/ToggleSwitch';
-import Toast from './components/Toast';
+import { Toaster } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 
 const OptionsApp: React.FC = () => {
   const { settings, loading, error, updateSettings, resetSettings } =
     useSettings();
-  const [toast, setToast] = useState<{
-    message: string;
-    type: 'success' | 'error' | 'info';
-  } | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
-
-  const showToast = (
-    message: string,
-    type: 'success' | 'error' | 'info',
-  ): void => {
-    setToast({ message, type });
-  };
 
   const handleThemeChange = async (
     theme: 'light' | 'dark' | 'system',
   ): Promise<void> => {
-    setIsSaving(true);
     const success = await updateSettings({ theme });
-    setIsSaving(false);
 
     if (success) {
-      showToast('Theme updated successfully', 'success');
+      toast.success('Theme updated successfully');
     } else {
-      showToast('Failed to update theme', 'error');
+      toast.error('Failed to update theme');
     }
   };
 
   const handleNotificationsChange = async (
     notifications: boolean,
   ): Promise<void> => {
-    setIsSaving(true);
     const success = await updateSettings({ notifications });
-    setIsSaving(false);
 
     if (success) {
-      showToast(
-        `Notifications ${notifications ? 'enabled' : 'disabled'}`,
-        'success',
-      );
+      toast.success(`Notifications ${notifications ? 'enabled' : 'disabled'}`);
     } else {
-      showToast('Failed to update notifications', 'error');
+      toast.error('Failed to update notifications');
     }
   };
 
   const handleAutoSyncChange = async (autoSync: boolean): Promise<void> => {
-    setIsSaving(true);
     const success = await updateSettings({ autoSync });
-    setIsSaving(false);
 
     if (success) {
-      showToast(`Auto-sync ${autoSync ? 'enabled' : 'disabled'}`, 'success');
+      toast.success(`Auto-sync ${autoSync ? 'enabled' : 'disabled'}`);
     } else {
-      showToast('Failed to update auto-sync', 'error');
+      toast.error('Failed to update auto-sync');
     }
   };
 
@@ -73,14 +53,12 @@ const OptionsApp: React.FC = () => {
       return;
     }
 
-    setIsSaving(true);
     const success = await resetSettings();
-    setIsSaving(false);
 
     if (success) {
-      showToast('Settings reset to defaults', 'success');
+      toast.success('Settings reset to defaults');
     } else {
-      showToast('Failed to reset settings', 'error');
+      toast.error('Failed to reset settings');
     }
   };
 
@@ -144,7 +122,7 @@ const OptionsApp: React.FC = () => {
             <ThemeSelector
               value={settings.theme}
               onChange={handleThemeChange}
-              disabled={isSaving}
+              disabled={false}
             />
           </div>
 
@@ -158,7 +136,7 @@ const OptionsApp: React.FC = () => {
               description="Show notifications for important events and updates"
               checked={settings.notifications}
               onChange={handleNotificationsChange}
-              disabled={isSaving}
+              disabled={false}
             />
           </div>
 
@@ -172,7 +150,7 @@ const OptionsApp: React.FC = () => {
               description="Automatically synchronize data in the background"
               checked={settings.autoSync}
               onChange={handleAutoSyncChange}
-              disabled={isSaving}
+              disabled={false}
             />
           </div>
 
@@ -189,7 +167,7 @@ const OptionsApp: React.FC = () => {
               </div>
               <button
                 onClick={handleReset}
-                disabled={isSaving}
+                disabled={false}
                 className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Reset to Defaults
@@ -207,13 +185,7 @@ const OptionsApp: React.FC = () => {
       </div>
 
       {/* Toast Notifications */}
-      {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
-      )}
+      <Toaster theme={settings.theme} position="bottom-right" />
     </div>
   );
 };

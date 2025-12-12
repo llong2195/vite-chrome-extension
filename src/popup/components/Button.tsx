@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button as ShadcnButton } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export interface ButtonProps {
   children: React.ReactNode;
@@ -19,40 +21,23 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   type = 'button',
 }) => {
-  const baseClasses =
-    'rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+  // Map our custom variants to shadcn variants
+  const shadcnVariant = variant === 'primary' ? 'default' : 'secondary';
 
-  const variantClasses = {
-    primary:
-      'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 disabled:bg-primary-400',
-    secondary:
-      'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 focus:ring-gray-500',
-  };
-
-  const sizeClasses = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg',
-  };
-
-  const widthClass = fullWidth ? 'w-full' : '';
-
-  const classes = [
-    baseClasses,
-    variantClasses[variant],
-    sizeClasses[size],
-    widthClass,
-  ].join(' ');
+  // Map our sizes to shadcn sizes
+  const shadcnSize = size === 'md' ? 'default' : size;
 
   return (
-    <button
+    <ShadcnButton
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={classes}
+      variant={shadcnVariant}
+      size={shadcnSize}
+      className={cn(fullWidth && 'w-full')}
     >
       {children}
-    </button>
+    </ShadcnButton>
   );
 };
 

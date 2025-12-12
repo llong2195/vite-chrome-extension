@@ -1,8 +1,15 @@
 /**
- * Theme selector component - radio buttons for light/dark/system
+ * Theme selector component - using shadcn/ui select
  */
 
 import React from 'react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface ThemeSelectorProps {
   value: 'light' | 'dark' | 'system';
@@ -38,37 +45,24 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   ];
 
   return (
-    <div className="space-y-3">
-      {themes.map((theme) => (
-        <label
-          key={theme.value}
-          className={`flex items-start p-4 border rounded-lg cursor-pointer transition-colors ${
-            value === theme.value
-              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-              : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
-          } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
-        >
-          <input
-            type="radio"
-            name="theme"
-            value={theme.value}
-            checked={value === theme.value}
-            onChange={(e) =>
-              onChange(e.target.value as 'light' | 'dark' | 'system')
-            }
-            disabled={disabled}
-            className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500"
-          />
-          <div className="ml-3 flex-1">
-            <div className="font-medium text-gray-900 dark:text-white">
-              {theme.label}
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              {theme.description}
-            </div>
-          </div>
-        </label>
-      ))}
+    <div className="space-y-2">
+      <Select value={value} onValueChange={onChange} disabled={disabled}>
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select theme" />
+        </SelectTrigger>
+        <SelectContent>
+          {themes.map((theme) => (
+            <SelectItem key={theme.value} value={theme.value}>
+              <div className="flex flex-col">
+                <span className="font-medium">{theme.label}</span>
+                <span className="text-xs text-muted-foreground">
+                  {theme.description}
+                </span>
+              </div>
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 };

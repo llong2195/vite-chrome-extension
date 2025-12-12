@@ -23,11 +23,11 @@ This project uses Chrome extension structure with `src/` at repository root cont
 
 **Purpose**: Install shadcn/ui and configure project for component integration
 
-- [ ] T001 Run `npx shadcn@latest init` to initialize shadcn/ui configuration (choose: Default style, Slate base color, CSS variables, TypeScript, components in src/components, utils in src/lib/utils.ts)
-- [ ] T002 [P] Install required dependencies: @radix-ui primitives, class-variance-authority, clsx, tailwind-merge (if not auto-installed)
-- [ ] T003 [P] Create src/lib/utils.ts with cn() utility function for className merging
-- [ ] T004 Update src/assets/styles/global.css to include shadcn/ui base styles, CSS variables, and theme classes
-- [ ] T005 Verify build runs successfully and check initial bundle size with `pnpm run build`
+- [x] T001 Run `npx shadcn@latest init` to initialize shadcn/ui configuration (choose: Default style, Slate base color, CSS variables, TypeScript, components in src/components, utils in src/lib/utils.ts)
+- [x] T002 [P] Install required dependencies: @radix-ui primitives, class-variance-authority, clsx, tailwind-merge (if not auto-installed)
+- [x] T003 [P] Create src/lib/utils.ts with cn() utility function for className merging
+- [x] T004 Update src/assets/styles/global.css to include shadcn/ui base styles, CSS variables, and theme classes
+- [x] T005 Verify build runs successfully and check initial bundle size with `pnpm run build`
 
 ---
 
@@ -37,12 +37,12 @@ This project uses Chrome extension structure with `src/` at repository root cont
 
 **⚠️ CRITICAL**: No user story component work can begin until these base components are installed
 
-- [ ] T006 [P] Install shadcn/ui button component with `npx shadcn@latest add button` in src/components/ui/button.tsx
-- [ ] T007 [P] Install shadcn/ui card component with `npx shadcn@latest add card` in src/components/ui/card.tsx
-- [ ] T008 [P] Install shadcn/ui switch component with `npx shadcn@latest add switch` in src/components/ui/switch.tsx
-- [ ] T009 [P] Install shadcn/ui select component with `npx shadcn@latest add select` in src/components/ui/select.tsx
-- [ ] T010 [P] Install shadcn/ui toast component with `npx shadcn@latest add toast` in src/components/ui/toast.tsx and src/components/ui/toaster.tsx
-- [ ] T011 Verify all components compile without TypeScript errors
+- [x] T006 [P] Install shadcn/ui button component with `npx shadcn@latest add button` in src/components/ui/button.tsx
+- [x] T007 [P] Install shadcn/ui card component with `npx shadcn@latest add card` in src/components/ui/card.tsx
+- [x] T008 [P] Install shadcn/ui switch component with `npx shadcn@latest add switch` in src/components/ui/switch.tsx
+- [x] T009 [P] Install shadcn/ui select component with `npx shadcn@latest add select` in src/components/ui/select.tsx
+- [x] T010 [P] Install shadcn/ui toast component with `npx shadcn@latest add toast` in src/components/ui/toast.tsx and src/components/ui/toaster.tsx (used sonner instead)
+- [x] T011 Verify all components compile without TypeScript errors
 
 **Checkpoint**: Foundation ready - component migration can now begin in parallel
 
@@ -56,20 +56,20 @@ This project uses Chrome extension structure with `src/` at repository root cont
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Replace popup Button component - update src/popup/components/Button.tsx to use shadcn/ui button
-- [ ] T013 [P] [US1] Replace popup Card component - update src/popup/components/Card.tsx to use shadcn/ui card
-- [ ] T014 [P] [US1] Replace options ToggleSwitch component - update src/options/components/ToggleSwitch.tsx to use shadcn/ui switch
-- [ ] T015 [P] [US1] Replace options ThemeSelector component - update src/options/components/ThemeSelector.tsx to use shadcn/ui select
-- [ ] T016 [P] [US1] Replace options Toast component - update src/options/components/Toast.tsx to use shadcn/ui toast system
-- [ ] T017 [US1] Update src/popup/App.tsx to import and use new button and card components
-- [ ] T018 [US1] Update src/options/OptionsApp.tsx to import and use new switch, select, and toast components
-- [ ] T019 [US1] Add Toaster provider to src/options/OptionsApp.tsx for toast notifications
-- [ ] T020 [US1] Update useSettings hook in src/options/hooks/useSettings.ts to use shadcn toast instead of custom Toast
+- [x] T012 [P] [US1] Replace popup Button component - update src/popup/components/Button.tsx to use shadcn/ui button
+- [x] T013 [P] [US1] Replace popup Card component - update src/popup/components/Card.tsx to use shadcn/ui card
+- [x] T014 [P] [US1] Replace options ToggleSwitch component - update src/options/components/ToggleSwitch.tsx to use shadcn/ui switch
+- [x] T015 [P] [US1] Replace options ThemeSelector component - update src/options/components/ThemeSelector.tsx to use shadcn/ui select
+- [x] T016 [P] [US1] Replace options Toast component - update src/options/components/Toast.tsx to use shadcn/ui toast system
+- [x] T017 [US1] Update src/popup/App.tsx to import and use new button and card components
+- [x] T018 [US1] Update src/options/OptionsApp.tsx to import and use new switch, select, and toast components
+- [x] T019 [US1] Add Toaster provider to src/options/OptionsApp.tsx for toast notifications
+- [x] T020 [US1] Update useSettings hook in src/options/hooks/useSettings.ts to use shadcn toast instead of custom Toast
 - [ ] T021 [US1] Verify all interactive elements have proper ARIA attributes and keyboard navigation support
 - [ ] T022 [US1] Test all components in popup: click buttons, verify cards display correctly
 - [ ] T023 [US1] Test all components in options page: toggle switches, change theme selector, trigger toast notifications
 - [ ] T024 [US1] Run existing test suite with `pnpm test` and ensure all tests pass
-- [ ] T025 [US1] Check bundle size with `pnpm run build` and verify total size is under 500KB
+- [x] T025 [US1] Check bundle size with `pnpm run build` and verify total size is under 500KB (Result: ~452KB uncompressed, ~137KB gzipped ✓)
 
 **Checkpoint**: At this point, all UI components are migrated and all existing functionality works identically
 

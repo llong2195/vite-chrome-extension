@@ -1,4 +1,6 @@
 import React from 'react';
+import { Card as ShadcnCard } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface CardProps {
   children: React.ReactNode;
@@ -12,21 +14,17 @@ const Card: React.FC<CardProps> = ({
   padding = 'md',
 }) => {
   const paddingClasses = {
-    none: '',
-    sm: 'p-2',
-    md: 'p-4',
-    lg: 'p-6',
+    none: 'py-0',
+    sm: 'py-2',
+    md: 'py-4',
+    lg: 'py-6',
   };
 
-  const classes = [
-    'bg-white dark:bg-gray-800',
-    'rounded-lg shadow-md',
-    'border border-gray-200 dark:border-gray-700',
-    paddingClasses[padding],
-    className,
-  ].join(' ');
-
-  return <div className={classes}>{children}</div>;
+  return (
+    <ShadcnCard className={cn(paddingClasses[padding], className)}>
+      {children}
+    </ShadcnCard>
+  );
 };
 
 export default Card;
